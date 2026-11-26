@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Withdraw - Krest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body class="m-0 font-sans bg-[#0a0a0a] text-white flex h-screen overflow-hidden text-[12px]">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-[34px] bg-[#141414] flex flex-col h-screen border-r border-[#242424] transition-[width] duration-300 ease-in-out whitespace-nowrap z-[100] shrink-0">
+        <ul class="list-none p-0 mt-[32px] mb-0">
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-broadcast-tower"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Trade Center</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-dollar-sign"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Fund Account</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center far fa-credit-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Place Withdraw</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-id-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">ID Verification</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-lock"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Update Password</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-user"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Profile</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-close"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0 w-full">
+        <!-- Navbar -->
+        <nav class="bg-[#181818] h-[32px] flex justify-between items-center px-2.5 border-b border-[#252525] shrink-0">
+            <button id="sidebarToggle" type="button" class="bg-transparent border-0 text-[#d4d4d4] text-[0.82rem] cursor-pointer p-0 hover:text-white">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-2.5">
+                <a href="#" class="text-[#8e8e8e] text-[0.78rem] no-underline hover:text-white">
+                    <i class="fa fa-envelope"></i>
+                </a>
+                <div class="text-[#cfcfcf] text-[11px] cursor-pointer flex items-center gap-1 hover:text-white">
+                    <span>Hi, DndkdKdm</span>
+                    <i class="fa fa-chevron-down text-[8.5px] text-[#8e8e8e]"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-6 bg-[#0c0c0c] w-full min-w-0">
+            <div class="mb-4 pb-3 border-b border-[#242424] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2.5">
+                <h1 class="m-0 text-[1.15rem] sm:text-[1.3rem] font-normal text-[#ff9800]">Place Withdraw</h1>
+                <div class="bg-[#141414] border border-[#262626] py-1.5 px-3 rounded text-[11px] sm:text-[12px]">
+                    Available Balance: <span class="text-[#2ecc71] font-bold ml-1">₹ INR : 200,000.00</span>
+                </div>
+            </div>
+
+            <div class="bg-[#141414] p-3.5 sm:p-6 rounded-md shadow-lg border border-[#262626] max-w-[680px] mx-auto">
+                <!-- Optional Alert Placeholder -->
+                <div id="status-alert" class="hidden py-2.5 px-3 rounded mb-4 text-center text-[11px]"></div>
+
+                <form action="#" method="post">
+                    <div class="mb-3.5">
+                        <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Withdrawal Method</label>
+                        <select name="method" id="withdrawMethod" required class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                            <option value="Bitcoin">Bitcoin (BTC)</option>
+                            <option value="Ethereum">Ethereum (ETH)</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Paypal">PayPal</option>
+                            <option value="Cashapp">Cashapp</option>
+                        </select>
+                    </div>
+
+                    <!-- Crypto Fields -->
+                    <div id="fields-crypto" class="hidden">
+                        <div class="mb-3.5">
+                            <label id="cryptoLabel" class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Receiving Bitcoin Address</label>
+                            <input type="text" name="wallet_address" id="wallet_address" placeholder="Enter your wallet address" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Bank Transfer Fields -->
+                    <div id="fields-bank" class="hidden">
+                        <div class="mb-3.5">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Bank Name</label>
+                            <input type="text" name="bank_name" id="bank_name" placeholder="Enter your bank name" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                        <div class="mb-3.5">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Account Holder Name</label>
+                            <input type="text" name="account_name" id="account_name" placeholder="Enter account holder name" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                        <div class="mb-3.5">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Account Number</label>
+                            <input type="text" name="account_number" id="account_number" placeholder="Enter account number" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                        <div class="mb-3.5">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Routing Number</label>
+                            <input type="text" name="routing_number" id="routing_number" placeholder="Enter routing number" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- PayPal Fields -->
+                    <div id="fields-paypal" class="hidden">
+                        <div class="mb-3.5">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">PayPal Email</label>
+                            <input type="email" name="paypal_email" id="paypal_email" placeholder="Enter your PayPal email" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Cashapp Fields -->
+                    <div id="fields-cashapp" class="hidden">
+                        <div class="mb-3.5">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Cashapp Cashtag</label>
+                            <input type="text" name="cashtag" id="cashtag" placeholder="Enter your $Cashtag" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="mb-3.5">
+                        <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Amount to Withdraw (₹ INR)</label>
+                        <input type="number" step="0.01" name="amount" placeholder="0.00" required class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                    </div>
+
+                    <button type="button" id="btnContinue" class="bg-[#ff9800] text-white py-2.5 px-4 w-full border-0 rounded text-[11px] sm:text-[12px] font-bold cursor-pointer transition-all duration-200 mt-3 uppercase tracking-[0.8px] hover:bg-[#e68a00] hover:-translate-y-px">
+                        Continue
+                    </button>
+
+                    <!-- PIN Modal -->
+                    <div id="pinModal" class="hidden fixed inset-0 z-[1000] bg-black/80 backdrop-blur-[4px]">
+                        <div class="bg-[#141414] my-[15vh] mx-auto p-5 sm:p-6 border border-[#2c2c2c] rounded-md w-[90%] max-w-[380px] relative text-white shadow-2xl">
+                            <span id="closePinModal" class="text-[#aaa] absolute top-4 right-4 text-[22px] font-bold cursor-pointer leading-none hover:text-white">&times;</span>
+                            <h2 class="mt-0 text-[1.1rem] text-[#ff9800] border-b border-[#242424] pb-2.5 mb-4 font-normal">Security Verification</h2>
+
+                            <div class="mb-4">
+                                <label class="block mb-1.5 text-[#bbb] text-[11px] sm:text-[12px]">
+                                    Withdrawal PIN <br>
+                                    <small class="text-[#e74c3c] font-normal text-[10px]">(Contact Livechat Support for your PIN)</small>
+                                </label>
+                                <input type="text" name="withdrawal_pin" id="withdrawal_pin_input" placeholder="Enter your secret PIN" class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                            </div>
+
+                            <button type="submit" class="bg-[#2ecc71] text-white py-2.5 px-4 w-full border-0 rounded text-[11px] sm:text-[12px] font-bold cursor-pointer transition-all duration-200 uppercase tracking-[0.8px] hover:bg-[#27ae60] hover:-translate-y-px">
+                                Confirm Withdrawal
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Withdrawal Logs -->
+            <div class="mt-7 max-w-[900px] mx-auto">
+                <h2 class="text-[#ff9800] text-[1.05rem] sm:text-[1.15rem] font-normal mb-3 border-b border-[#242424] pb-1.5">Withdrawal History</h2>
+                <div class="overflow-x-auto rounded-md border border-[#262626] shadow-lg">
+                    <table class="w-full border-collapse bg-[#141414] overflow-hidden text-[11px] sm:text-[12px]">
+                        <thead class="bg-[#1c1c1c]">
+                            <tr>
+                                <th class="py-2.5 px-3 text-left text-[#bbb] font-semibold">Date</th>
+                                <th class="py-2.5 px-3 text-left text-[#bbb] font-semibold">Method</th>
+                                <th class="py-2.5 px-3 text-left text-[#bbb] font-semibold">Amount</th>
+                                <th class="py-2.5 px-3 text-left text-[#bbb] font-semibold">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-[#222222]">
+                                <td class="py-2.5 px-3 text-[#ddd]">Nov 24, 2026 14:30</td>
+                                <td class="py-2.5 px-3 text-[#ddd]">Bitcoin</td>
+                                <td class="py-2.5 px-3 font-bold text-white">₹ INR 25,000.00</td>
+                                <td class="py-2.5 px-3">
+                                    <span class="bg-[#f1c40f]/20 border border-[#f1c40f] text-[#f1c40f] py-0.5 px-2 rounded text-[10px]">Pending</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-[#222222]">
+                                <td class="py-2.5 px-3 text-[#ddd]">Nov 18, 2026 09:15</td>
+                                <td class="py-2.5 px-3 text-[#ddd]">Bank Transfer</td>
+                                <td class="py-2.5 px-3 font-bold text-white">₹ INR 15,000.00</td>
+                                <td class="py-2.5 px-3">
+                                    <span class="bg-[#2ecc71]/20 border border-[#2ecc71] text-[#2ecc71] py-0.5 px-2 rounded text-[10px]">Approved</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar Toggle
+            var toggleBtn = document.getElementById('sidebarToggle');
+            var sidebar = document.getElementById('sidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                    sidebar.classList.toggle('w-[168px]');
+                    sidebar.querySelectorAll('span').forEach(function(label) {
+                        label.classList.toggle('opacity-100');
+                    });
+                });
+            }
+
+            // Dynamic Form Fields
+            var methodSelect = document.getElementById('withdrawMethod');
+            var cryptoFields = document.getElementById('fields-crypto');
+            var bankFields = document.getElementById('fields-bank');
+            var paypalFields = document.getElementById('fields-paypal');
+            var cashappFields = document.getElementById('fields-cashapp');
+            var cryptoLabel = document.getElementById('cryptoLabel');
+
+            function updateFields() {
+                var method = methodSelect.value;
+
+                cryptoFields.classList.add('hidden');
+                bankFields.classList.add('hidden');
+                paypalFields.classList.add('hidden');
+                cashappFields.classList.add('hidden');
+
+                document.getElementById('wallet_address').required = false;
+                document.getElementById('bank_name').required = false;
+                document.getElementById('account_name').required = false;
+                document.getElementById('account_number').required = false;
+                document.getElementById('routing_number').required = false;
+                document.getElementById('paypal_email').required = false;
+                document.getElementById('cashtag').required = false;
+
+                if (method === 'Bitcoin' || method === 'Ethereum') {
+                    cryptoFields.classList.remove('hidden');
+                    cryptoLabel.innerText = 'Receiving ' + method + ' Address';
+                    document.getElementById('wallet_address').required = true;
+                } else if (method === 'Bank Transfer') {
+                    bankFields.classList.remove('hidden');
+                    document.getElementById('bank_name').required = true;
+                    document.getElementById('account_name').required = true;
+                    document.getElementById('account_number').required = true;
+                    document.getElementById('routing_number').required = true;
+                } else if (method === 'Paypal') {
+                    paypalFields.classList.remove('hidden');
+                    document.getElementById('paypal_email').required = true;
+                } else if (method === 'Cashapp') {
+                    cashappFields.classList.remove('hidden');
+                    document.getElementById('cashtag').required = true;
+                }
+            }
+
+            methodSelect.addEventListener('change', updateFields);
+            updateFields();
+
+            // Modal Logic
+            var btnContinue = document.getElementById('btnContinue');
+            var pinModal = document.getElementById('pinModal');
+            var closePinModal = document.getElementById('closePinModal');
+            var pinInput = document.getElementById('withdrawal_pin_input');
+            var form = btnContinue.closest('form');
+
+            btnContinue.addEventListener('click', function() {
+                if (form.reportValidity()) {
+                    pinModal.classList.remove('hidden');
+                    pinInput.required = true;
+                }
+            });
+
+            closePinModal.addEventListener('click', function() {
+                pinModal.classList.add('hidden');
+                pinInput.required = false;
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == pinModal) {
+                    pinModal.classList.add('hidden');
+                    pinInput.required = false;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
