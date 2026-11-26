@@ -131,7 +131,7 @@
             <span class="close-modal text-[#aaa] absolute top-4 right-4 text-[22px] font-bold cursor-pointer transition-colors duration-200 leading-none hover:text-white">&times;</span>
             <h2 class="mt-0 text-[1.15rem] text-[#ff9800] border-b border-[#242424] pb-2.5 mb-4 font-normal"><span id="modalMethodName">Bitcoin</span> Deposit</h2>
 
-            <p class="text-[11px] sm:text-[12px] text-[#ddd] m-0">All <strong class="text-[#ff9800]" id="modalMethodText">Bitcoin</strong> payments should be sent to the address below:</p>
+            <p id="modalInstructionText" class="text-[11px] sm:text-[12px] text-[#ddd] m-0">All <strong class="text-[#ff9800]" id="modalMethodText">Bitcoin</strong> payments should be sent to the address below:</p>
 
             <div id="walletAddress" class="bg-[#050505] border border-dashed border-[#444] py-3 px-2.5 text-center font-mono text-[11px] text-[#ff9800] my-3.5 break-all rounded select-all"></div>
 
@@ -181,32 +181,43 @@
 
             // Elements to update dynamically
             var modalMethodName = document.getElementById('modalMethodName');
-            var modalMethodText = document.getElementById('modalMethodText');
+            var modalInstructionText = document.getElementById('modalInstructionText');
             var inputMethod = document.getElementById('inputMethod');
             var walletAddress = document.getElementById('walletAddress');
 
-            // Addresses for different methods
-            var addresses = {
-                'Bitcoin': 'bc1q4n4d6jntha8j7hxvy7hxyzexmxk029grw5jm7h',
-                'Ethereum': '0x743Bf82a4c2d72b1F5E583aFce2C58426e5ae714',
-                'Cashapp': '',
-                'Zelle': '',
-                'Paypal': ''
+            // Dummy prop data for all payment options
+            var paymentProps = {
+                'Bitcoin': {
+                    label: 'address',
+                    value: 'bc1q4n4d6jntha8j7hxvy7hxyzexmxk029grw5jm7h'
+                },
+                'Ethereum': {
+                    label: 'address',
+                    value: '0x743Bf82a4c2d72b1F5E583aFce2C58426e5ae714'
+                },
+                'Cashapp': {
+                    label: 'cashtag',
+                    value: '$KrestOfficialPay'
+                },
+                'Zelle': {
+                    label: 'email',
+                    value: 'payments@krestfinance.com'
+                },
+                'Paypal': {
+                    label: 'email',
+                    value: 'billing@krestfinance.com'
+                }
             };
 
             depositBtns.forEach(function(btn) {
                 btn.addEventListener('click', function() {
-                    var method = this.parentElement.querySelector('.method-title').innerText;
+                    var method = this.parentElement.querySelector('.method-title').innerText.trim();
+                    var prop = paymentProps[method] || { label: 'address', value: 'Contact support for details' };
 
                     modalMethodName.innerText = method;
-                    modalMethodText.innerText = method;
                     inputMethod.value = method;
-
-                    if (addresses[method]) {
-                        walletAddress.innerText = addresses[method];
-                    } else {
-                        walletAddress.innerText = 'Contact support for address';
-                    }
+                    modalInstructionText.innerHTML = 'All <strong class="text-[#ff9800]">' + method + '</strong> payments should be sent to the ' + prop.label + ' below:';
+                    walletAddress.innerText = prop.value;
 
                     modal.classList.remove('hidden');
                 });
