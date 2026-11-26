@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Verification - Krest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body class="m-0 font-sans bg-[#0a0a0a] text-white flex h-screen overflow-hidden text-[12px]">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-[34px] bg-[#141414] flex flex-col h-screen border-r border-[#242424] transition-[width] duration-300 ease-in-out whitespace-nowrap z-[100] shrink-0">
+        <ul class="list-none p-0 mt-[32px] mb-0">
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-broadcast-tower"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Trade Center</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-dollar-sign"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Fund Account</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center far fa-credit-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Place Withdraw</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-id-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">ID Verification</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-lock"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Update Password</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-user"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Profile</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-close"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0 w-full">
+        <!-- Navbar -->
+        <nav class="bg-[#181818] h-[32px] flex justify-between items-center px-2.5 border-b border-[#252525] shrink-0">
+            <button id="sidebarToggle" type="button" class="bg-transparent border-0 text-[#d4d4d4] text-[0.82rem] cursor-pointer p-0 hover:text-white">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-2.5">
+                <a href="#" class="text-[#8e8e8e] text-[0.78rem] no-underline hover:text-white">
+                    <i class="fa fa-envelope"></i>
+                </a>
+                <div class="text-[#cfcfcf] text-[11px] cursor-pointer flex items-center gap-1 hover:text-white">
+                    <span>Hi, DndkdKdm</span>
+                    <i class="fa fa-chevron-down text-[8.5px] text-[#8e8e8e]"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-6 bg-[#0c0c0c] w-full min-w-0">
+            <div class="mb-4 pb-3 border-b border-[#242424] flex justify-between items-center">
+                <h1 class="m-0 text-[1.15rem] sm:text-[1.3rem] font-normal text-[#ff9800]">Upload ID Card</h1>
+            </div>
+
+            <div class="bg-[#3498db]/10 border border-[#3498db] p-3.5 sm:p-4 rounded-md mb-4 leading-relaxed text-[#e0e0e0] text-[11px] sm:text-[12px]">
+                Verify your account by uploading a valid ID Card. In order to send, receive, trade or store crypto, you'll need to first verify your identity as a resident of a country. There are different account levels, with deposit and withdrawal limits that apply to each level:
+                <ul class="mt-2 mb-0 pl-4 space-y-1">
+                    <li><strong>Level 1</strong> - Confirm mobile number and basic personal details and selfie photo (no older than 24 hours)</li>
+                    <li><strong>Level 2</strong> - Submit/Photo scan of government-issued ID (accepted documents)</li>
+                    <li><strong>Level 3</strong> - Submit proof of residential address (accepted documents)</li>
+                </ul>
+            </div>
+
+            <div class="bg-[#141414] p-3.5 sm:p-6 rounded-md shadow-lg border border-[#262626] max-w-[680px] mx-auto">
+                <!-- Status Badge (example: unverified) -->
+                <div class="inline-block py-1.5 px-3 rounded text-[11px] font-bold mb-4 w-full text-center box-border bg-[#e74c3c]/20 border border-[#e74c3c] text-[#e74c3c]">
+                    You have not Uploaded your verification id yet
+                </div>
+
+                <!-- Optional Alert Placeholder -->
+                <div id="status-alert" class="hidden py-2.5 px-3 rounded mb-4 text-center text-[11px]"></div>
+
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label class="block mb-1.5 text-[#bbb] text-[11px] sm:text-[12px]">Document Type</label>
+                        <select name="document_type" required class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                            <option value="">---Select Document Type---</option>
+                            <option value="Passport">Passport</option>
+                            <option value="Driver License">Driver's License</option>
+                            <option value="National ID">National ID Card</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                        <div id="front-card" class="border-2 border-dashed border-[#383838] rounded-md py-4 px-2.5 text-center bg-[#0a0a0a] cursor-pointer transition-all duration-300 relative overflow-hidden hover:border-[#ff9800] hover:bg-[#141414]">
+                            <i class="text-[1.6rem] text-[#ff9800] mb-2 block transition-colors duration-300 fa fa-id-card"></i>
+                            <p id="front-text" class="m-0 text-[#bbb] text-[11px] break-all">Click to upload Front Page</p>
+                            <span class="block mt-1 text-[#666] text-[10px]">Supported: JPG, PNG, PDF</span>
+                            <input type="file" name="front_page" id="front_input" accept="image/*,.pdf" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                        </div>
+
+                        <div id="back-card" class="border-2 border-dashed border-[#383838] rounded-md py-4 px-2.5 text-center bg-[#0a0a0a] cursor-pointer transition-all duration-300 relative overflow-hidden hover:border-[#ff9800] hover:bg-[#141414]">
+                            <i class="text-[1.6rem] text-[#ff9800] mb-2 block transition-colors duration-300 fa fa-id-card-clip"></i>
+                            <p id="back-text" class="m-0 text-[#bbb] text-[11px] break-all">Click to upload Back Page</p>
+                            <span class="block mt-1 text-[#666] text-[10px]">Supported: JPG, PNG, PDF</span>
+                            <input type="file" name="back_page" id="back_input" accept="image/*,.pdf" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="bg-[#ff9800] text-white py-2.5 px-4 w-full border-0 rounded text-[11px] sm:text-[12px] font-bold cursor-pointer transition-all duration-200 mt-2 uppercase tracking-[0.8px] hover:bg-[#e68a00] hover:-translate-y-px disabled:bg-[#555] disabled:cursor-not-allowed disabled:transform-none">
+                        Submit Verification
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar Toggle
+            var toggleBtn = document.getElementById('sidebarToggle');
+            var sidebar = document.getElementById('sidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                    sidebar.classList.toggle('w-[168px]');
+                    sidebar.querySelectorAll('span').forEach(function(label) {
+                        label.classList.toggle('opacity-100');
+                    });
+                });
+            }
+
+            // File Upload UI Update
+            const frontInput = document.getElementById('front_input');
+            const backInput = document.getElementById('back_input');
+            const frontText = document.getElementById('front-text');
+            const backText = document.getElementById('back-text');
+            const frontCard = document.getElementById('front-card');
+            const backCard = document.getElementById('back-card');
+
+            if (frontInput && !frontInput.disabled) {
+                frontInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        frontText.innerText = this.files[0].name;
+                        frontCard.classList.remove('border-[#383838]', 'border-dashed');
+                        frontCard.classList.add('border-2', 'border-solid', 'border-[#2ecc71]', 'bg-[#2ecc71]/5');
+                        frontCard.querySelector('i').className = 'text-[1.6rem] text-[#2ecc71] mb-2 block transition-colors duration-300 fa fa-check-circle';
+                    }
+                });
+            }
+
+            if (backInput && !backInput.disabled) {
+                backInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        backText.innerText = this.files[0].name;
+                        backCard.classList.remove('border-[#383838]', 'border-dashed');
+                        backCard.classList.add('border-2', 'border-solid', 'border-[#2ecc71]', 'bg-[#2ecc71]/5');
+                        backCard.querySelector('i').className = 'text-[1.6rem] text-[#2ecc71] mb-2 block transition-colors duration-300 fa fa-check-circle';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
