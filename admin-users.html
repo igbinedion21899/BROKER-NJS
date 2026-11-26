@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - Krest Admin</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body class="m-0 font-sans bg-[#0a0a0a] text-white flex h-screen overflow-hidden text-[12px]">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-[34px] bg-[#141414] flex flex-col h-screen border-r border-[#242424] transition-[width] duration-300 ease-in-out whitespace-nowrap z-[100] shrink-0">
+        <ul class="list-none p-0 mt-[32px] mb-0">
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-tachometer-alt"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Dashboard</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-users"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Users</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-arrow-down"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Deposits</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-arrow-up"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Withdrawals</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-id-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">ID Verifications</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-cog"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Settings</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center ti-close"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0 w-full">
+        <!-- Navbar -->
+        <nav class="bg-[#181818] h-[32px] flex justify-between items-center px-2.5 border-b border-[#252525] shrink-0">
+            <button id="sidebarToggle" type="button" class="bg-transparent border-0 text-[#d4d4d4] text-[0.82rem] cursor-pointer p-0 hover:text-[#e74c3c]">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-2.5">
+                <div class="text-[#e74c3c] text-[11px] font-bold flex items-center gap-1">
+                    <span>Admin Console</span>
+                    <i class="fa fa-shield-alt text-[9px]"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-6 bg-[#0c0c0c] w-full min-w-0">
+            <div class="mb-4 pb-3 border-b border-[#242424] flex justify-between items-center">
+                <h1 class="m-0 text-[1.15rem] sm:text-[1.3rem] font-normal text-[#e74c3c]">Manage Users</h1>
+            </div>
+
+            <div class="bg-[#141414] rounded-md border border-[#262626] overflow-x-auto shadow-lg">
+                <table class="w-full border-collapse text-[11px] sm:text-[12px]">
+                    <thead>
+                        <tr class="bg-[#1c1c1c] border-b border-[#282828]">
+                            <th class="py-2.5 px-3 text-left text-[#999] uppercase text-[10px] tracking-[0.8px] font-semibold">Name</th>
+                            <th class="py-2.5 px-3 text-left text-[#999] uppercase text-[10px] tracking-[0.8px] font-semibold">Email</th>
+                            <th class="py-2.5 px-3 text-left text-[#999] uppercase text-[10px] tracking-[0.8px] font-semibold">Country</th>
+                            <th class="py-2.5 px-3 text-left text-[#999] uppercase text-[10px] tracking-[0.8px] font-semibold">Balance</th>
+                            <th class="py-2.5 px-3 text-left text-[#999] uppercase text-[10px] tracking-[0.8px] font-semibold">Joined</th>
+                            <th class="py-2.5 px-3 text-left text-[#999] uppercase text-[10px] tracking-[0.8px] font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#222222]">
+                        <tr class="hover:bg-white/[0.02] transition-colors">
+                            <td class="py-2.5 px-3 text-white whitespace-nowrap">Dndkd Kdm</td>
+                            <td class="py-2.5 px-3 text-[#bbb] whitespace-nowrap">dndkd.kdm@example.com</td>
+                            <td class="py-2.5 px-3 text-[#bbb] whitespace-nowrap">Nigeria</td>
+                            <td class="py-2.5 px-3 text-[#2ecc71] font-bold font-mono whitespace-nowrap">€2,450.00</td>
+                            <td class="py-2.5 px-3 text-[#999] whitespace-nowrap">Nov 18, 2026</td>
+                            <td class="py-2.5 px-3 whitespace-nowrap">
+                                <a href="#" class="bg-[#3498db] hover:bg-[#2980b9] text-white py-1 px-2.5 rounded no-underline text-[10px] font-semibold inline-block transition-colors">Edit</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-white/[0.02] transition-colors">
+                            <td class="py-2.5 px-3 text-white whitespace-nowrap">Amina Bello</td>
+                            <td class="py-2.5 px-3 text-[#bbb] whitespace-nowrap">amina.bello@example.com</td>
+                            <td class="py-2.5 px-3 text-[#bbb] whitespace-nowrap">United Kingdom</td>
+                            <td class="py-2.5 px-3 text-[#2ecc71] font-bold font-mono whitespace-nowrap">€6,120.50</td>
+                            <td class="py-2.5 px-3 text-[#999] whitespace-nowrap">Nov 21, 2026</td>
+                            <td class="py-2.5 px-3 whitespace-nowrap">
+                                <a href="#" class="bg-[#3498db] hover:bg-[#2980b9] text-white py-1 px-2.5 rounded no-underline text-[10px] font-semibold inline-block transition-colors">Edit</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-white/[0.02] transition-colors">
+                            <td class="py-2.5 px-3 text-white whitespace-nowrap">Liam Vance</td>
+                            <td class="py-2.5 px-3 text-[#bbb] whitespace-nowrap">liam.vance@example.com</td>
+                            <td class="py-2.5 px-3 text-[#bbb] whitespace-nowrap">United States</td>
+                            <td class="py-2.5 px-3 text-[#2ecc71] font-bold font-mono whitespace-nowrap">€1,080.00</td>
+                            <td class="py-2.5 px-3 text-[#999] whitespace-nowrap">Nov 24, 2026</td>
+                            <td class="py-2.5 px-3 whitespace-nowrap">
+                                <a href="#" class="bg-[#3498db] hover:bg-[#2980b9] text-white py-1 px-2.5 rounded no-underline text-[10px] font-semibold inline-block transition-colors">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggleBtn = document.getElementById('sidebarToggle');
+            var sidebar = document.getElementById('sidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                    sidebar.classList.toggle('w-[168px]');
+                    sidebar.querySelectorAll('span').forEach(function(label) {
+                        label.classList.toggle('opacity-100');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
