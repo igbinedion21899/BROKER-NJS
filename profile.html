@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Krest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body class="m-0 font-sans bg-[#0a0a0a] text-white flex h-screen overflow-hidden text-[12px]">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-[34px] bg-[#141414] flex flex-col h-screen border-r border-[#242424] transition-[width] duration-300 ease-in-out whitespace-nowrap z-[100] shrink-0">
+        <ul class="list-none p-0 mt-[32px] mb-0">
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-broadcast-tower"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Trade Center</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-dollar-sign"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Fund Account</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center far fa-credit-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Place Withdraw</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center fa fa-id-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">ID Verification</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-lock"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Update Password</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-user"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Profile</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e67e22] min-w-[34px] text-center ti-close"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0 w-full">
+        <!-- Navbar -->
+        <nav class="bg-[#181818] h-[32px] flex justify-between items-center px-2.5 border-b border-[#252525] shrink-0">
+            <button id="sidebarToggle" type="button" class="bg-transparent border-0 text-[#d4d4d4] text-[0.82rem] cursor-pointer p-0 hover:text-white">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-2.5">
+                <a href="#" class="text-[#8e8e8e] text-[0.78rem] no-underline hover:text-white">
+                    <i class="fa fa-envelope"></i>
+                </a>
+                <div class="text-[#cfcfcf] text-[11px] cursor-pointer flex items-center gap-1 hover:text-white">
+                    <span>Hi, DndkdKdm</span>
+                    <i class="fa fa-chevron-down text-[8.5px] text-[#8e8e8e]"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-6 bg-[#0c0c0c] w-full min-w-0">
+            <div class="mb-4 pb-3 border-b border-[#242424] flex justify-between items-center">
+                <h1 class="m-0 text-[1.15rem] sm:text-[1.3rem] font-normal text-[#ff9800]">My Profile</h1>
+            </div>
+
+            <div class="bg-[#141414] p-3.5 sm:p-6 rounded-md shadow-lg border border-[#262626] max-w-[740px] mx-auto">
+                <!-- Optional Alert Placeholder -->
+                <div id="status-alert" class="hidden py-2.5 px-3 rounded mb-4 text-center text-[11px]"></div>
+
+                <form action="#" method="post">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div class="mb-1">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">First Name</label>
+                            <input type="text" value="Dndkd" disabled class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#0b0b0b] text-[#888] rounded text-[11px] sm:text-[12px] cursor-not-allowed">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Surname</label>
+                            <input type="text" value="Kdm" disabled class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#0b0b0b] text-[#888] rounded text-[11px] sm:text-[12px] cursor-not-allowed">
+                        </div>
+
+                        <div class="mb-1 sm:col-span-2">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Email Address</label>
+                            <input type="email" value="dndkd.kdm@example.com" disabled class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#0b0b0b] text-[#888] rounded text-[11px] sm:text-[12px] cursor-not-allowed">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Phone Number</label>
+                            <input type="text" name="phone" value="+234 800 000 0000" required class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Country</label>
+                            <select name="country" required class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#050505] text-white rounded text-[11px] sm:text-[12px] focus:border-[#ff9800] focus:outline-none">
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Nigeria" selected>Nigeria</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Account Type</label>
+                            <input type="text" value="Standard" disabled class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#0b0b0b] text-[#888] rounded text-[11px] sm:text-[12px] cursor-not-allowed">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="block mb-1 text-[#bbb] text-[11px] sm:text-[12px]">Currency</label>
+                            <input type="text" value="INR" disabled class="w-full py-2 px-3 border border-[#2c2c2c] bg-[#0b0b0b] text-[#888] rounded text-[11px] sm:text-[12px] cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="bg-[#ff9800] text-white py-2.5 px-4 w-full border-0 rounded text-[11px] sm:text-[12px] font-bold cursor-pointer transition-all duration-200 mt-4 uppercase tracking-[0.8px] hover:bg-[#e68a00] hover:-translate-y-px">
+                        Update Profile
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggleBtn = document.getElementById('sidebarToggle');
+            var sidebar = document.getElementById('sidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                    sidebar.classList.toggle('w-[168px]');
+                    sidebar.querySelectorAll('span').forEach(function(label) {
+                        label.classList.toggle('opacity-100');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
