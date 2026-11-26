@@ -61,7 +61,7 @@
         </ul>
     </aside>
 
-    <div class="flex-1 flex flex-col overflow-hidden min-w-0">
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0 w-full">
         <!-- Navbar -->
         <nav class="bg-[#181818] h-[26px] flex justify-between items-center px-2 border-b border-[#252525] shrink-0">
             <button id="sidebarToggle" type="button" class="bg-transparent border-0 text-[#d4d4d4] text-[0.68rem] cursor-pointer p-0 hover:text-white">
@@ -79,14 +79,14 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto pb-10 bg-[#0c0c0c]">
+        <main class="flex-1 overflow-y-auto overflow-x-hidden pb-10 bg-[#0c0c0c] w-full min-w-0">
 
             <!-- TradingView Ticker Tape -->
-            <div class="px-1.5 pt-1.5 sm:px-2 sm:pt-1.5">
-                <div class="h-[24px] border border-[#222222] bg-[#111111] overflow-hidden">
+            <div class="px-1.5 pt-1.5 sm:px-2 sm:pt-1.5 w-full max-w-full overflow-hidden">
+                <div class="w-full min-w-0 h-[44px] sm:h-[40px] border border-[#222222] bg-[#111111] overflow-hidden relative">
                     <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container h-full w-full">
-                        <div class="tradingview-widget-container__widget h-full w-full"></div>
+                    <div class="tradingview-widget-container w-full h-full block">
+                        <div class="tradingview-widget-container__widget w-full h-full"></div>
                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
                         {
                             "symbols": [
@@ -98,7 +98,7 @@
                             ],
                             "showSymbolLogo": true,
                             "isTransparent": true,
-                            "displayMode": "adaptive",
+                            "displayMode": "compact",
                             "colorTheme": "dark",
                             "locale": "en"
                         }
@@ -144,7 +144,7 @@
             </div>
 
             <!-- TradingView Advanced Chart -->
-            <div class="px-1.5 sm:px-2 h-[195px] sm:h-[225px] mt-1">
+            <div class="px-1.5 sm:px-2 h-[195px] sm:h-[225px] mt-1 w-full max-w-full overflow-hidden">
                 <!-- TradingView Widget BEGIN -->
                 <div class="tradingview-widget-container h-full w-full">
                     <div class="tradingview-widget-container__widget h-[calc(100%-24px)] w-full"></div>
