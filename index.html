@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krest — Institutional Digital Asset & Crypto Execution</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        krest: {
+                            bg: '#0a0a0a',
+                            surface: '#111111',
+                            card: '#141414',
+                            border: '#222222',
+                            accent: '#ff9800',
+                            accentHover: '#e68a00',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-grid-pattern {
+            background-size: 44px 44px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        .terminal-elevation {
+            box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        /* Scroll Reveal System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-18px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-left.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(18px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-right.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger helper delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .reveal-left, .reveal-right {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-white font-sans antialiased selection:bg-[#ff9800] selection:text-black overflow-x-hidden">
+
+    <!-- Top Scroll Progress Hairline -->
+    <div class="fixed top-0 left-0 right-0 h-[2px] z-50 bg-transparent pointer-events-none">
+        <div id="scrollProgress" class="h-full w-0 bg-gradient-to-r from-[#ff9800] via-[#f1c40f] to-[#ff9800] transition-[width] duration-75 ease-out"></div>
+    </div>
+
+    <!-- Top TradingView Ticker Tape -->
+    <div class="w-full h-[34px] bg-[#101010] border-b border-[#1f1f1f] overflow-hidden relative z-40">
+        <div class="tradingview-widget-container w-full h-full">
+            <div class="tradingview-widget-container__widget w-full h-full"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    { "proName": "BITSTAMP:BTCUSD", "title": "BTC / USD" },
+                    { "proName": "BITSTAMP:ETHUSD", "title": "ETH / USD" },
+                    { "proName": "BINANCE:SOLUSDT", "title": "SOL / USDT" },
+                    { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+                    { "proName": "FOREXCOM:NSXUSD", "title": "US 100" },
+                    { "proName": "FX_IDC:EURUSD", "title": "EUR / USD" }
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": true,
+                "displayMode": "compact",
+                "colorTheme": "dark",
+                "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
+    <!-- Sticky Glass Navbar -->
+    <header id="mainHeader" class="sticky top-0 z-30 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-[#1c1c1c] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-7 h-7 rounded bg-[#141414] border border-[#282828] flex items-center justify-center group-hover:border-[#ff9800] transition-colors">
+                    <i class="fa fa-broadcast-tower text-[#ff9800] text-xs"></i>
+                </div>
+                <span class="font-semibold tracking-wider text-base uppercase text-white">Krest<span class="text-[#ff9800]">.</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-xs text-[#9c9c9c] font-medium">
+                <a href="#markets" class="hover:text-white transition-colors">Markets</a>
+                <a href="#architecture" class="hover:text-white transition-colors">Architecture</a>
+                <a href="#tiers" class="hover:text-white transition-colors">Account Tiers</a>
+                <a href="#governance" class="hover:text-white transition-colors">Custody &amp; Governance</a>
+            </nav>
+
+            <!-- Auth CTAs -->
+            <div class="flex items-center gap-2.5">
+                <a href="#" class="px-3.5 py-1.5 text-xs font-medium text-[#c4c4c4] hover:text-white transition-colors">Sign In</a>
+                <a href="#" class="px-4 py-1.5 rounded bg-[#ff9800] hover:bg-[#e68a00] text-black font-semibold text-xs tracking-wide transition-colors">
+                    Request Access
+                </a>
+                <button id="mobileMenuBtn" type="button" aria-label="Toggle Menu" class="md:hidden ml-1 p-1.5 text-[#a3a3a3] hover:text-white">
+                    <i class="fa fa-bars text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#111111] border-b border-[#222222] px-4 py-3 space-y-2 text-xs">
+            <a href="#markets" class="block text-[#cfcfcf] hover:text-[#ff9800] py-1">Markets</a>
+            <a href="#architecture" class="block text-[#cfcfcf] hover:text-[#ff9800] py-1">Architecture</a>
+            <a href="#tiers" class="block text-[#cfcfcf] hover:text-[#ff9800] py-1">Account Tiers</a>
+            <a href="#governance" class="block text-[#cfcfcf] hover:text-[#ff9800] py-1">Custody &amp; Governance</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-grid-pattern pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-[#191919] overflow-hidden">
+        <div class="pointer-events-none absolute -top-28 left-1/2 -translate-x-1/2 w-[720px] h-[300px] rounded-full bg-[#ff9800]/[0.07] blur-[130px]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-9 items-center">
+
+                <!-- Left Copy -->
+                <div class="lg:col-span-6 space-y-6 reveal-left">
+                    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#121212] border border-[#242424] text-[11px] font-mono text-[#b8b8b8]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#2ecc71]"></span>
+                        <span>MULTI-VENUE LIQUIDITY • INSTITUTIONAL SETTLEMENT</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.1] text-white">
+                        Disciplined Digital Asset Execution Without <span class="text-[#ff9800]">Noise.</span>
+                    </h1>
+
+                    <p class="text-sm sm:text-[15px] text-[#969696] leading-relaxed max-w-xl font-normal">
+                        Krest pairs low-latency order routing and live institutional charting with transparent balance controls, multi-rail deposits, and PIN-protected withdrawals.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-3 pt-1">
+                        <a href="#" class="px-6 py-3 rounded bg-[#ff9800] hover:bg-[#e68a00] text-black font-semibold text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-2">
+                            <span>Launch Terminal</span>
+                            <i class="fa fa-arrow-right text-[10px]"></i>
+                        </a>
+                        <a href="#markets" class="px-5 py-3 rounded bg-[#121212] hover:bg-[#191919] border border-[#262626] text-[#d4d4d4] hover:text-white font-medium text-xs tracking-wide transition-colors">
+                            View Order Book &amp; Rates
+                        </a>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-[#1c1c1c] max-w-lg">
+                        <div>
+                            <div class="font-mono text-base sm:text-lg font-semibold text-white">$4.82B</div>
+                            <div class="text-[10px] text-[#707070] uppercase tracking-wider mt-0.5">30-Day Volume</div>
+                        </div>
+                        <div>
+                            <div class="font-mono text-base sm:text-lg font-semibold text-[#2ecc71]">3.8 ms</div>
+                            <div class="text-[10px] text-[#707070] uppercase tracking-wider mt-0.5">Median Fill Time</div>
+                        </div>
+                        <div>
+                            <div class="font-mono text-base sm:text-lg font-semibold text-white">99.99%</div>
+                            <div class="text-[10px] text-[#707070] uppercase tracking-wider mt-0.5">Engine Availability</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Terminal Preview Card -->
+                <div class="lg:col-span-6 reveal-right">
+                    <div class="bg-[#111111] border border-[#242424] rounded-md overflow-hidden terminal-elevation">
+                        <!-- Terminal Header -->
+                        <div class="bg-[#151515] px-3.5 py-2.5 border-b border-[#222222] flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-[#3a3a3a]"></span>
+                                <span class="w-2 h-2 rounded-full bg-[#3a3a3a]"></span>
+                                <span class="w-2 h-2 rounded-full bg-[#3a3a3a]"></span>
+                                <span class="ml-2 font-mono text-[11px] text-[#a3a3a3]">KREST // TRADE DESK — BTC/USD</span>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-[#2ecc71]/10 text-[#2ecc71] border border-[#2ecc71]/25">STREAM ACTIVE</span>
+                        </div>
+
+                        <!-- Compact Telemetry Strip -->
+                        <div class="grid grid-cols-3 gap-2 p-2.5 bg-[#0c0c0c] border-b border-[#1e1e1e]">
+                            <div class="bg-[#070707] border border-[#222222] border-l-2 border-l-[#ff9800] px-2.5 py-1.5">
+                                <div class="text-[9px] font-bold uppercase tracking-wider text-[#ff9800]">INDEX MARK</div>
+                                <div class="font-mono text-xs text-white mt-0.5">$95,840.50</div>
+                            </div>
+                            <div class="bg-[#070707] border border-[#222222] border-l-2 border-l-[#2ecc71] px-2.5 py-1.5">
+                                <div class="text-[9px] font-bold uppercase tracking-wider text-[#2ecc71]">24H DELTA</div>
+                                <div class="font-mono text-xs text-[#2ecc71] mt-0.5">+4.18%</div>
+                            </div>
+                            <div class="bg-[#070707] border border-[#222222] border-l-2 border-l-[#3498db] px-2.5 py-1.5">
+                                <div class="text-[9px] font-bold uppercase tracking-wider text-[#3498db]">8H FUNDING</div>
+                                <div class="font-mono text-xs text-white mt-0.5">+0.0100%</div>
+                            </div>
+                        </div>
+
+                        <!-- Embedded Chart -->
+                        <div class="h-[275px] sm:h-[305px] w-full bg-[#0a0a0a]">
+                            <div class="tradingview-widget-container h-full w-full">
+                                <div class="tradingview-widget-container__widget h-full w-full"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                                {
+                                    "autosize": true,
+                                    "symbol": "COINBASE:BTCUSD",
+                                    "interval": "60",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "enable_publishing": false,
+                                    "backgroundColor": "rgba(10, 10, 10, 1)",
+                                    "gridColor": "rgba(42, 46, 57, 0.08)",
+                                    "hide_top_toolbar": true,
+                                    "hide_legend": false,
+                                    "save_image": false,
+                                    "container_id": "hero_tv_chart",
+                                    "support_host": "https://www.tradingview.com"
+                                }
+                                </script>
+                            </div>
+                        </div>
+
+                        <!-- Footer Execution Bar -->
+                        <div class="bg-[#141414] px-3.5 py-2.5 border-t border-[#222222] flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2 font-mono text-[11px] text-[#808080]">
+                                <span>MARGIN MODE:</span>
+                                <span class="text-[#d4d4d4] bg-[#0a0a0a] border border-[#262626] px-2 py-0.5 rounded">ISOLATED · UP TO 100X</span>
+                            </div>
+                            <span class="font-mono text-[10px] text-[#999]">0.00% MAKER / 0.02% TAKER</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Markets Overview -->
+    <section id="markets" class="py-16 sm:py-24 border-b border-[#191919]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 reveal">
+                <div>
+                    <span class="font-mono text-[11px] uppercase tracking-widest text-[#ff9800]">LIQUIDITY SNAPSHOT</span>
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Core Trading Pairs</h2>
+                </div>
+                <div class="font-mono text-[11px] text-[#777]">
+                    SETTLEMENT CURRENCIES: <span class="text-[#cfcfcf]">USD · EUR · INR · BTC</span>
+                </div>
+            </div>
+
+            <div class="bg-[#111111] border border-[#222222] rounded-md overflow-hidden reveal delay-100">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-[#151515] border-b border-[#222222] text-[10px] uppercase tracking-wider text-[#808080]">
+                                <th class="py-3.5 px-4 font-semibold">Instrument</th>
+                                <th class="py-3.5 px-4 font-semibold">Mark Price</th>
+                                <th class="py-3.5 px-4 font-semibold">24h Change</th>
+                                <th class="py-3.5 px-4 font-semibold hidden sm:table-cell">24h Notional Volume</th>
+                                <th class="py-3.5 px-4 font-semibold text-right">Terminal</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#1b1b1b] text-xs font-mono">
+                            <tr class="hover:bg-[#151515] transition-colors">
+                                <td class="py-3.5 px-4 font-sans">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fab fa-bitcoin text-[#f7931a] text-base"></i>
+                                        <div>
+                                            <div class="font-semibold text-white">BTC / USD</div>
+                                            <div class="text-[10px] text-[#707070]">Spot &amp; Perpetual</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-white font-medium">$95,840.50</td>
+                                <td class="py-3.5 px-4 text-[#2ecc71]">+4.18%</td>
+                                <td class="py-3.5 px-4 text-[#8e8e8e] hidden sm:table-cell">$1,842,910,400</td>
+                                <td class="py-3.5 px-4 text-right font-sans">
+                                    <a href="#" class="inline-block px-3 py-1 rounded bg-[#181818] hover:bg-[#ff9800] text-[#ff9800] hover:text-black border border-[#2a2a2a] hover:border-[#ff9800] text-[11px] font-semibold transition-colors">Execute</a>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#151515] transition-colors">
+                                <td class="py-3.5 px-4 font-sans">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fab fa-ethereum text-[#627eea] text-base"></i>
+                                        <div>
+                                            <div class="font-semibold text-white">ETH / USD</div>
+                                            <div class="text-[10px] text-[#707070]">Spot &amp; Perpetual</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-white font-medium">$3,412.80</td>
+                                <td class="py-3.5 px-4 text-[#2ecc71]">+2.94%</td>
+                                <td class="py-3.5 px-4 text-[#8e8e8e] hidden sm:table-cell">$914,220,150</td>
+                                <td class="py-3.5 px-4 text-right font-sans">
+                                    <a href="#" class="inline-block px-3 py-1 rounded bg-[#181818] hover:bg-[#ff9800] text-[#ff9800] hover:text-black border border-[#2a2a2a] hover:border-[#ff9800] text-[11px] font-semibold transition-colors">Execute</a>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#151515] transition-colors">
+                                <td class="py-3.5 px-4 font-sans">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-4 h-4 rounded-full bg-[#14F195]/15 flex items-center justify-center text-[#14F195] text-[10px] font-bold">S</div>
+                                        <div>
+                                            <div class="font-semibold text-white">SOL / USD</div>
+                                            <div class="text-[10px] text-[#707070]">Spot &amp; Perpetual</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-white font-medium">$238.15</td>
+                                <td class="py-3.5 px-4 text-[#2ecc71]">+6.72%</td>
+                                <td class="py-3.5 px-4 text-[#8e8e8e] hidden sm:table-cell">$612,045,890</td>
+                                <td class="py-3.5 px-4 text-right font-sans">
+                                    <a href="#" class="inline-block px-3 py-1 rounded bg-[#181818] hover:bg-[#ff9800] text-[#ff9800] hover:text-black border border-[#2a2a2a] hover:border-[#ff9800] text-[11px] font-semibold transition-colors">Execute</a>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#151515] transition-colors">
+                                <td class="py-3.5 px-4 font-sans">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-4 h-4 rounded-full bg-[#3498db]/15 flex items-center justify-center text-[#3498db] text-[10px] font-bold">X</div>
+                                        <div>
+                                            <div class="font-semibold text-white">XRP / USD</div>
+                                            <div class="text-[10px] text-[#707070]">Spot &amp; Perpetual</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-white font-medium">$1.4820</td>
+                                <td class="py-3.5 px-4 text-[#e74c3c]">-1.14%</td>
+                                <td class="py-3.5 px-4 text-[#8e8e8e] hidden sm:table-cell">$408,710,000</td>
+                                <td class="py-3.5 px-4 text-right font-sans">
+                                    <a href="#" class="inline-block px-3 py-1 rounded bg-[#181818] hover:bg-[#ff9800] text-[#ff9800] hover:text-black border border-[#2a2a2a] hover:border-[#ff9800] text-[11px] font-semibold transition-colors">Execute</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Operational Workflow -->
+    <section id="architecture" class="py-16 sm:py-24 bg-[#0c0c0c] border-b border-[#191919]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="max-w-2xl mb-12 reveal">
+                <span class="font-mono text-[11px] uppercase tracking-widest text-[#ff9800]">SYSTEM ARCHITECTURE</span>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Built for Accountability &amp; Speed</h2>
+                <p class="text-xs sm:text-sm text-[#8e8e8e] mt-2 leading-relaxed">
+                    Every workflow—from document verification and deposit receipt submission to PIN-authorized withdrawals—is structured for clarity and operational control.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="bg-[#111111] border border-[#222222] border-l-[3px] border-l-[#ff9800] p-6 rounded-md reveal delay-100">
+                    <div class="font-mono text-[10px] text-[#ff9800] uppercase tracking-widest mb-3">01 / EXECUTION</div>
+                    <h3 class="text-base font-semibold text-white mb-2">Aggregated Depth Routing</h3>
+                    <p class="text-xs text-[#8e8e8e] leading-relaxed">
+                        Smart routing evaluates real-time order book depth across liquidity venues to minimize slippage during high-volatility sessions.
+                    </p>
+                </div>
+
+                <div class="bg-[#111111] border border-[#222222] border-l-[3px] border-l-[#2ecc71] p-6 rounded-md reveal delay-200">
+                    <div class="font-mono text-[10px] text-[#2ecc71] uppercase tracking-widest mb-3">02 / TREASURY</div>
+                    <h3 class="text-base font-semibold text-white mb-2">Multi-Method Funding Rails</h3>
+                    <p class="text-xs text-[#8e8e8e] leading-relaxed">
+                        Fund accounts via Bitcoin, Ethereum, Cashapp, Zelle, or PayPal with structured receipt verification, and withdraw via crypto, bank transfer, or supported payment channels.
+                    </p>
+                </div>
+
+                <div class="bg-[#111111] border border-[#222222] border-l-[3px] border-l-[#3498db] p-6 rounded-md reveal delay-300">
+                    <div class="font-mono text-[10px] text-[#3498db] uppercase tracking-widest mb-3">03 / CONTROLS</div>
+                    <h3 class="text-base font-semibold text-white mb-2">Identity &amp; PIN Safeguards</h3>
+                    <p class="text-xs text-[#8e8e8e] leading-relaxed">
+                        Tiered ID verification and mandatory withdrawal PIN confirmation protect client capital against unauthorized payout requests.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Account Tiers -->
+    <section id="tiers" class="py-16 sm:py-24 border-b border-[#191919]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="max-w-xl mb-12 reveal">
+                <span class="font-mono text-[11px] uppercase tracking-widest text-[#ff9800]">ACCOUNT TIERS</span>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Capital &amp; Access Levels</h2>
+                <p class="text-xs sm:text-sm text-[#8e8e8e] mt-2">
+                    Select an account profile aligned with your trading horizon, margin requirements, and settlement preferences.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Standard -->
+                <div class="bg-[#111111] border border-[#222222] rounded-md p-6 flex flex-col justify-between reveal delay-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#3498db]">Standard</span>
+                            <span class="font-mono text-[10px] text-[#707070]">TIER 01</span>
+                        </div>
+                        <div class="text-2xl font-mono font-semibold text-white mb-1">$500 <span class="text-xs font-sans font-normal text-[#707070]">minimum</span></div>
+                        <p class="text-xs text-[#808080] mb-5 pb-5 border-b border-[#1e1e1e]">Core spot and margin access for active individual traders.</p>
+
+                        <ul class="space-y-2.5 text-xs text-[#c4c4c4] mb-6">
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Real-time TradingView Charts &amp; Tickers</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Up to 20x Isolated Margin</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Standard Multi-Rail Deposits &amp; Payouts</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> 24/7 Account &amp; PIN Support</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="block text-center py-2.5 px-4 rounded bg-[#181818] hover:bg-[#222222] border border-[#2a2a2a] text-white text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Select Standard
+                    </a>
+                </div>
+
+                <!-- Executive -->
+                <div class="bg-[#141414] border border-[#ff9800]/80 rounded-md p-6 flex flex-col justify-between relative reveal delay-200">
+                    <div class="absolute -top-2.5 right-4 bg-[#ff9800] text-black text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded">
+                        Recommended
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#ff9800]">Executive</span>
+                            <span class="font-mono text-[10px] text-[#ff9800]">TIER 02</span>
+                        </div>
+                        <div class="text-2xl font-mono font-semibold text-white mb-1">$5,000 <span class="text-xs font-sans font-normal text-[#707070]">minimum</span></div>
+                        <p class="text-xs text-[#8e8e8e] mb-5 pb-5 border-b border-[#242424]">Enhanced leverage limits, tighter spreads, and priority handling.</p>
+
+                        <ul class="space-y-2.5 text-xs text-white mb-6">
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#ff9800] text-[10px]"></i> Zero Maker Fees on Core Pairs</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#ff9800] text-[10px]"></i> Up to 50x Margin Capacity</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#ff9800] text-[10px]"></i> Priority Withdrawal Review Queue</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#ff9800] text-[10px]"></i> Dedicated Desk Coverage</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="block text-center py-2.5 px-4 rounded bg-[#ff9800] hover:bg-[#e68a00] text-black text-xs font-bold uppercase tracking-wider transition-colors">
+                        Open Executive
+                    </a>
+                </div>
+
+                <!-- Institutional -->
+                <div class="bg-[#111111] border border-[#222222] rounded-md p-6 flex flex-col justify-between reveal delay-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#2ecc71]">Institutional</span>
+                            <span class="font-mono text-[10px] text-[#707070]">TIER 03</span>
+                        </div>
+                        <div class="text-2xl font-mono font-semibold text-white mb-1">$25,000 <span class="text-xs font-sans font-normal text-[#707070]">minimum</span></div>
+                        <p class="text-xs text-[#808080] mb-5 pb-5 border-b border-[#1e1e1e]">Tailored execution parameters for funds and high-volume desks.</p>
+
+                        <ul class="space-y-2.5 text-xs text-[#c4c4c4] mb-6">
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Block &amp; OTC Liquidity Routing</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Up to 100x Risk-Managed Margin</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Expedited Settlement Workflows</li>
+                            <li class="flex items-center gap-2.5"><i class="fa fa-check text-[#2ecc71] text-[10px]"></i> Direct Relationship Manager</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="block text-center py-2.5 px-4 rounded bg-[#181818] hover:bg-[#222222] border border-[#2a2a2a] text-white text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Select Institutional
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custody & Governance -->
+    <section id="governance" class="py-16 sm:py-20 bg-[#0c0c0c]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 reveal">
+            <div class="bg-[#131313] border border-[#242424] rounded-md p-7 sm:p-10 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-[3px] h-full bg-[#ff9800]"></div>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-2 max-w-2xl">
+                        <div class="font-mono text-[10px] text-[#ff9800] uppercase tracking-widest">ONBOARDING &amp; VERIFICATION</div>
+                        <h2 class="text-xl sm:text-2xl font-semibold text-white">Structured Access From Day One.</h2>
+                        <p class="text-xs text-[#8e8e8e] leading-relaxed">
+                            Create your profile, submit front and back identity documentation for account verification, fund your balance, and manage security credentials in one unified workspace.
+                        </p>
+                    </div>
+                    <div class="shrink-0">
+                        <a href="#" class="inline-block px-6 py-3 rounded bg-[#ff9800] hover:bg-[#e68a00] text-black font-semibold text-xs uppercase tracking-wider transition-colors">
+                            Create Account
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#080808] border-t border-[#181818] py-10 text-xs text-[#707070]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-8 border-b border-[#151515]">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-6 h-6 rounded bg-[#141414] border border-[#242424] flex items-center justify-center">
+                        <i class="fa fa-broadcast-tower text-[#ff9800] text-[10px]"></i>
+                    </div>
+                    <span class="font-semibold tracking-wider text-sm uppercase text-white">Krest<span class="text-[#ff9800]">.</span></span>
+                </div>
+
+                <div class="flex flex-wrap gap-6 text-[11px]">
+                    <a href="#markets" class="hover:text-white transition-colors">Markets</a>
+                    <a href="#architecture" class="hover:text-white transition-colors">Architecture</a>
+                    <a href="#tiers" class="hover:text-white transition-colors">Account Tiers</a>
+                    <a href="#governance" class="hover:text-white transition-colors">Governance</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[11px] text-[#555555]">
+                <p>&copy; 2026 Krest. All rights reserved.</p>
+                <p class="max-w-xl sm:text-right">
+                    Trading digital assets and leveraged instruments involves substantial risk of loss. Evaluate your risk tolerance prior to trading.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Scroll progress hairline
+            const progressBar = document.getElementById('scrollProgress');
+            function updateScrollProgress() {
+                if (!progressBar) return;
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+                progressBar.style.width = pct + '%';
+            }
+            window.addEventListener('scroll', updateScrollProgress, { passive: true });
+            updateScrollProgress();
+
+            // IntersectionObserver for scroll reveal animations
+            const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(
+                    function (entries, obs) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-visible');
+                                obs.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.12,
+                        rootMargin: '0px 0px -40px 0px'
+                    }
+                );
+
+                revealEls.forEach(function (el) {
+                    observer.observe(el);
+                });
+            } else {
+                revealEls.forEach(function (el) {
+                    el.classList.add('is-visible');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
