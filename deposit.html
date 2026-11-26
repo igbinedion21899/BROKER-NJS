@@ -91,47 +91,47 @@
                     <div class="absolute top-3 -right-7 bg-[#2ecc71] text-white text-[9px] font-bold py-0.5 px-7 rotate-45 tracking-[0.8px] uppercase shadow">Recommended</div>
                     <i class="text-[2.2rem] mb-3 fab fa-bitcoin text-[#f7931a]"></i>
                     <div class="text-[1rem] font-semibold mb-4 tracking-[0.4px] text-white">Bitcoin</div>
-                    <button type="button" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
+                    <button type="button" data-method="Bitcoin" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
                 </div>
 
                 <!-- Ethereum -->
                 <div class="bg-[#141414] border border-[#262626] rounded-md py-6 px-4 flex flex-col items-center text-center transition-all duration-200 relative overflow-hidden hover:-translate-y-1 hover:shadow-xl hover:border-[#444]">
                     <i class="text-[2.2rem] mb-3 fab fa-ethereum text-[#627eea]"></i>
                     <div class="text-[1rem] font-semibold mb-4 tracking-[0.4px] text-white">Ethereum</div>
-                    <button type="button" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
+                    <button type="button" data-method="Ethereum" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
                 </div>
 
                 <!-- Cashapp -->
                 <div class="bg-[#141414] border border-[#262626] rounded-md py-6 px-4 flex flex-col items-center text-center transition-all duration-200 relative overflow-hidden hover:-translate-y-1 hover:shadow-xl hover:border-[#444]">
                     <i class="text-[2.2rem] mb-3 fas fa-dollar-sign text-[#00d632]"></i>
                     <div class="text-[1rem] font-semibold mb-4 tracking-[0.4px] text-white">Cashapp</div>
-                    <button type="button" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
+                    <button type="button" data-method="Cashapp" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
                 </div>
 
                 <!-- Zelle -->
                 <div class="bg-[#141414] border border-[#262626] rounded-md py-6 px-4 flex flex-col items-center text-center transition-all duration-200 relative overflow-hidden hover:-translate-y-1 hover:shadow-xl hover:border-[#444]">
                     <i class="text-[2.2rem] mb-3 fas fa-university text-[#7413dc]"></i>
                     <div class="text-[1rem] font-semibold mb-4 tracking-[0.4px] text-white">Zelle</div>
-                    <button type="button" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
+                    <button type="button" data-method="Zelle" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
                 </div>
 
                 <!-- Paypal -->
                 <div class="bg-[#141414] border border-[#262626] rounded-md py-6 px-4 flex flex-col items-center text-center transition-all duration-200 relative overflow-hidden hover:-translate-y-1 hover:shadow-xl hover:border-[#444]">
                     <i class="text-[2.2rem] mb-3 fab fa-paypal text-[#00457c]"></i>
                     <div class="text-[1rem] font-semibold mb-4 tracking-[0.4px] text-white">Paypal</div>
-                    <button type="button" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
+                    <button type="button" data-method="Paypal" class="btn-deposit bg-[#ff9800] text-white border-0 py-2 px-4 rounded text-[11px] font-bold cursor-pointer transition-colors duration-200 w-full uppercase tracking-[0.8px] hover:bg-[#e68a00]">Deposit</button>
                 </div>
             </div>
         </main>
     </div>
 
     <!-- Deposit Modal -->
-    <div id="depositModal" class="hidden fixed inset-0 z-[1000] overflow-auto bg-black/80 backdrop-blur-[4px]">
+    <div id="depositModal" class="hidden fixed inset-0 z-[1000] overflow-auto bg-black/80 backdrop-blur-[4px]" role="dialog" aria-modal="true" aria-labelledby="modalMethodName">
         <div class="bg-[#141414] my-[8vh] mx-auto p-5 sm:p-6 border border-[#2c2c2c] rounded-md w-[92%] max-w-[440px] relative text-white shadow-2xl">
-            <span class="close-modal text-[#aaa] absolute top-4 right-4 text-[22px] font-bold cursor-pointer transition-colors duration-200 leading-none hover:text-white">&times;</span>
+            <button type="button" id="closeModalBtn" aria-label="Close modal" class="text-[#aaa] bg-transparent border-0 absolute top-4 right-4 text-[22px] font-bold cursor-pointer transition-colors duration-200 leading-none hover:text-white">&times;</button>
             <h2 class="mt-0 text-[1.15rem] text-[#ff9800] border-b border-[#242424] pb-2.5 mb-4 font-normal"><span id="modalMethodName">Bitcoin</span> Deposit</h2>
 
-            <p id="modalInstructionText" class="text-[11px] sm:text-[12px] text-[#ddd] m-0">All <strong class="text-[#ff9800]" id="modalMethodText">Bitcoin</strong> payments should be sent to the address below:</p>
+            <p id="modalInstructionText" class="text-[11px] sm:text-[12px] text-[#ddd] m-0">All <strong class="text-[#ff9800]">Bitcoin</strong> payments should be sent to the address below:</p>
 
             <div id="walletAddress" class="bg-[#050505] border border-dashed border-[#444] py-3 px-2.5 text-center font-mono text-[11px] text-[#ff9800] my-3.5 break-all rounded select-all"></div>
 
@@ -176,16 +176,14 @@
 
             // Modal Logic
             var modal = document.getElementById('depositModal');
-            var closeBtn = document.getElementsByClassName('close-modal')[0];
+            var closeBtn = document.getElementById('closeModalBtn');
             var depositBtns = document.querySelectorAll('.btn-deposit');
 
-            // Elements to update dynamically
             var modalMethodName = document.getElementById('modalMethodName');
             var modalInstructionText = document.getElementById('modalInstructionText');
             var inputMethod = document.getElementById('inputMethod');
             var walletAddress = document.getElementById('walletAddress');
 
-            // Dummy prop data for all payment options
             var paymentProps = {
                 'Bitcoin': {
                     label: 'address',
@@ -209,29 +207,47 @@
                 }
             };
 
+            function openDepositModal(methodName) {
+                var method = (methodName || 'Bitcoin').trim();
+                var prop = paymentProps[method] || { label: 'address', value: 'Contact support for details' };
+
+                modalMethodName.textContent = method;
+                inputMethod.value = method;
+                modalInstructionText.innerHTML = 'All <strong class="text-[#ff9800]">' + method + '</strong> payments should be sent to the ' + prop.label + ' below:';
+                walletAddress.textContent = prop.value;
+
+                modal.classList.remove('hidden');
+            }
+
+            function closeDepositModal() {
+                modal.classList.add('hidden');
+            }
+
             depositBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var method = this.parentElement.querySelector('.method-title').innerText.trim();
-                    var prop = paymentProps[method] || { label: 'address', value: 'Contact support for details' };
-
-                    modalMethodName.innerText = method;
-                    inputMethod.value = method;
-                    modalInstructionText.innerHTML = 'All <strong class="text-[#ff9800]">' + method + '</strong> payments should be sent to the ' + prop.label + ' below:';
-                    walletAddress.innerText = prop.value;
-
-                    modal.classList.remove('hidden');
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var card = this.closest('.rounded-md');
+                    var titleEl = card ? card.querySelector('.font-semibold') : null;
+                    var method = this.getAttribute('data-method') || (titleEl ? titleEl.textContent : 'Bitcoin');
+                    openDepositModal(method);
                 });
             });
 
-            closeBtn.onclick = function() {
-                modal.classList.add('hidden');
-            };
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeDepositModal);
+            }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.classList.add('hidden');
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeDepositModal();
                 }
-            };
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeDepositModal();
+                }
+            });
         });
     </script>
 
