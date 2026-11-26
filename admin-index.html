@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Krest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body class="m-0 font-sans bg-[#0a0a0a] text-white flex h-screen overflow-hidden text-[12px]">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-[34px] bg-[#141414] flex flex-col h-screen border-r border-[#242424] transition-[width] duration-300 ease-in-out whitespace-nowrap z-[100] shrink-0">
+        <ul class="list-none p-0 mt-[32px] mb-0">
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-tachometer-alt"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Dashboard</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-users"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Users</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-arrow-down"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Deposits</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-arrow-up"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Withdrawals</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center fa fa-id-card"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">ID Verifications</span>
+                </a>
+            </li>
+            <li class="border-b border-[#1f1f1f]">
+                <a href="#" class="flex justify-start items-center py-2 px-0 text-[#d4d4d4] no-underline transition-colors duration-200 hover:bg-[#1f1f1f] hover:border-l-2 hover:border-l-[#e74c3c] overflow-hidden">
+                    <i class="text-[0.8rem] text-[#e74c3c] min-w-[34px] text-center ti-close"></i>
+                    <span class="opacity-0 transition-opacity duration-300 ease-in-out text-[11px]">Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0 w-full">
+        <!-- Navbar -->
+        <nav class="bg-[#181818] h-[32px] flex justify-between items-center px-2.5 border-b border-[#252525] shrink-0">
+            <button id="sidebarToggle" type="button" class="bg-transparent border-0 text-[#d4d4d4] text-[0.82rem] cursor-pointer p-0 hover:text-[#e74c3c]">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-2.5">
+                <div class="text-[#e74c3c] text-[11px] font-bold flex items-center gap-1">
+                    <span>Admin Console</span>
+                    <i class="fa fa-shield-alt text-[9px]"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-6 bg-[#0c0c0c] w-full min-w-0">
+            <div class="mb-4 pb-3 border-b border-[#242424]">
+                <h1 class="m-0 text-[1.15rem] sm:text-[1.3rem] font-normal text-[#e74c3c]">Admin Dashboard</h1>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="bg-[#141414] p-4 sm:p-5 rounded-md border border-[#262626] shadow-lg flex items-center justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-[#e74c3c]">
+                    <div>
+                        <h3 class="m-0 text-[10px] text-[#888] uppercase tracking-[0.8px] font-semibold">Total Users</h3>
+                        <div class="text-[1.4rem] sm:text-[1.6rem] font-bold text-white mt-1 font-mono">1,428</div>
+                    </div>
+                    <i class="text-[1.8rem] text-[#e74c3c]/20 fa fa-users"></i>
+                </div>
+
+                <div class="bg-[#141414] p-4 sm:p-5 rounded-md border border-[#262626] shadow-lg flex items-center justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-[#e74c3c]">
+                    <div>
+                        <h3 class="m-0 text-[10px] text-[#888] uppercase tracking-[0.8px] font-semibold">Total Deposits</h3>
+                        <div class="text-[1.4rem] sm:text-[1.6rem] font-bold text-white mt-1 font-mono">€84,500.00</div>
+                    </div>
+                    <i class="text-[1.8rem] text-[#e74c3c]/20 fa fa-euro-sign"></i>
+                </div>
+
+                <div class="bg-[#141414] p-4 sm:p-5 rounded-md border border-[#262626] shadow-lg flex items-center justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-[#e74c3c]">
+                    <div>
+                        <h3 class="m-0 text-[10px] text-[#888] uppercase tracking-[0.8px] font-semibold">Pending Withdrawals</h3>
+                        <div class="text-[1.4rem] sm:text-[1.6rem] font-bold text-white mt-1 font-mono">7</div>
+                    </div>
+                    <i class="text-[1.8rem] text-[#e74c3c]/20 fa fa-clock"></i>
+                </div>
+
+                <div class="bg-[#141414] p-4 sm:p-5 rounded-md border border-[#262626] shadow-lg flex items-center justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-[#e74c3c]">
+                    <div>
+                        <h3 class="m-0 text-[10px] text-[#888] uppercase tracking-[0.8px] font-semibold">Pending IDs</h3>
+                        <div class="text-[1.4rem] sm:text-[1.6rem] font-bold text-white mt-1 font-mono">12</div>
+                    </div>
+                    <i class="text-[1.8rem] text-[#e74c3c]/20 fa fa-id-card"></i>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggleBtn = document.getElementById('sidebarToggle');
+            var sidebar = document.getElementById('sidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    sidebar.classList.toggle('expanded');
+                    sidebar.classList.toggle('w-[168px]');
+                    sidebar.querySelectorAll('span').forEach(function(label) {
+                        label.classList.toggle('opacity-100');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
